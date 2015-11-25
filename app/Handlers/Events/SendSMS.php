@@ -3,7 +3,7 @@
 namespace App\Handlers\Events;
 
 use App\Events\SendSMSEvent;
-use App\Sms\Mitake_SMS;
+use App\User;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -16,9 +16,9 @@ class SendSMS implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $users)
     {
-        //
+        $this->users = $users;
     }
 
     /**
@@ -39,7 +39,7 @@ class SendSMS implements ShouldQueue
             'message' => $data['message'],
         ]);
 
-        $user = \App\User::find($data['user']['id']);
+        $user = $this->users->find($data['user']['id']);
         $user->messages()->create([
             'to'      => $data['phone'],
             'message' => $data['message'],
