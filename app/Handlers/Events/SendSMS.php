@@ -33,8 +33,8 @@ class SendSMS implements ShouldQueue
 
         $data = $event->getData();
 
-        $mitake = new Mitake_SMS($this->apiKey);
-        $mitake->sendTextMessage([
+        $courier = $event->getCourier();
+        $courier->sendTextMessage([
             'to'      => $data['phone'],
             'message' => $data['message'],
         ]);
