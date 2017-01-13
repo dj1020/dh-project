@@ -4,7 +4,7 @@ CREATE DATABASE dh_demo
   DEFAULT COLLATE utf8_general_ci;
 
 -- 建立 homestead 使用者，密碼為 secret
-CREATE USER 'homestead'@'%' identified by 'secret';
+CREATE USER 'homestead'@'localhost' identified by 'secret';
 
 -- 賦予 homestead 使用者存取 dh_demo 資料庫所有權限
-GRANT ALL PRIVILEGES ON dh_demo.* TO 'homestead'@'%' IDENTIFIED BY 'secret';
+GRANT ALL PRIVILEGES ON dh_demo.* TO 'homestead'@'localhost' IDENTIFIED BY 'secret';
